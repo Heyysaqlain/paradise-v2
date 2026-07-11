@@ -1,0 +1,899 @@
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+background:#fffdfb;
+font-family:Arial,Helvetica,sans-serif;
+color:#351019;
+}
+
+.customers-page{
+min-height:100vh;
+background:#fffdfb;
+padding:40px;
+}
+
+.customers-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:40px;
+padding-bottom:25px;
+border-bottom:1px solid #eadde0;
+}
+
+.customers-header p{
+margin:0 0 12px;
+color:#b07932;
+font-size:10px;
+letter-spacing:5px;
+text-transform:uppercase;
+}
+
+.customers-header h1{
+margin:0;
+font-family:Georgia,serif;
+font-size:46px;
+font-weight:400;
+color:#351019;
+}
+
+.customers-header span{
+display:block;
+margin-top:12px;
+font-size:13px;
+color:#8d797e;
+line-height:1.8;
+}
+
+.refresh-btn{
+padding:14px 26px;
+background:#741638;
+color:#fff;
+border:none;
+cursor:pointer;
+font-size:12px;
+letter-spacing:2px;
+transition:.3s;
+}
+
+.refresh-btn:hover{
+background:#5d102c;
+}
+
+.customer-stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-bottom:40px;
+}
+
+.stat-card{
+background:#fff;
+border:1px solid #eadde0;
+padding:30px;
+box-shadow:0 15px 40px rgba(74,13,32,.05);
+transition:.3s;
+}
+
+.stat-card:hover{
+transform:translateY(-4px);
+}
+
+.stat-card h2{
+margin:0;
+font-family:Georgia,serif;
+font-size:38px;
+font-weight:400;
+color:#351019;
+}
+
+.stat-card span{
+display:block;
+margin-top:14px;
+color:#8d797e;
+font-size:12px;
+letter-spacing:2px;
+text-transform:uppercase;
+}
+
+.customers-card{
+background:#fff;
+border:1px solid #eadde0;
+box-shadow:0 15px 40px rgba(74,13,32,.05);
+overflow:hidden;
+}
+.customers-toolbar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:28px 35px;
+border-bottom:1px solid #eadde0;
+background:#faf5f2;
+}
+
+.customers-toolbar h2{
+margin:0;
+font-family:Georgia,serif;
+font-size:28px;
+font-weight:400;
+color:#351019;
+}
+
+.customers-toolbar input{
+width:340px;
+padding:15px 18px;
+border:1px solid #d9c8cd;
+background:#fff;
+outline:none;
+font-size:13px;
+color:#351019;
+transition:.3s;
+}
+
+.customers-toolbar input::placeholder{
+color:#9b878c;
+}
+
+.customers-toolbar input:focus{
+border-color:#741638;
+box-shadow:0 0 0 4px rgba(116,22,56,.08);
+}
+
+.customers-table{
+width:100%;
+border-collapse:collapse;
+}
+
+.customers-table thead{
+background:#f7efec;
+}
+
+.customers-table th{
+padding:18px 22px;
+text-align:left;
+font-size:11px;
+letter-spacing:3px;
+text-transform:uppercase;
+color:#8d797e;
+font-weight:600;
+border-bottom:1px solid #eadde0;
+}
+
+.customers-table td{
+padding:22px;
+border-bottom:1px solid #f0e5e8;
+vertical-align:middle;
+font-size:13px;
+color:#351019;
+}
+
+.customers-table tbody tr{
+transition:.25s;
+}
+
+.customers-table tbody tr:hover{
+background:#fff9f7;
+}
+
+.customer-info{
+display:flex;
+align-items:center;
+gap:16px;
+}
+
+.customer-avatar{
+width:52px;
+height:52px;
+border-radius:50%;
+border:1px solid #741638;
+background:#fff;
+display:flex;
+align-items:center;
+justify-content:center;
+font-family:Georgia,serif;
+font-size:22px;
+color:#741638;
+flex-shrink:0;
+}
+
+.customer-info strong{
+display:block;
+font-family:Georgia,serif;
+font-size:18px;
+font-weight:400;
+color:#351019;
+}
+
+.customer-info small{
+display:block;
+margin-top:5px;
+font-size:11px;
+color:#8d797e;
+letter-spacing:1px;
+}
+.orders-badge{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-width:42px;
+padding:8px 14px;
+background:#faf5f2;
+border:1px solid #e2cfd4;
+color:#741638;
+font-size:12px;
+font-weight:700;
+letter-spacing:1px;
+}
+
+.action-buttons{
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.action-buttons button{
+min-width:88px;
+padding:11px 16px;
+border:none;
+cursor:pointer;
+font-size:11px;
+letter-spacing:2px;
+text-transform:uppercase;
+transition:.3s;
+}
+
+.view-btn{
+background:#741638;
+color:#fff;
+}
+
+.view-btn:hover{
+background:#5b102b;
+}
+
+.edit-btn{
+background:#b07932;
+color:#fff;
+}
+
+.edit-btn:hover{
+background:#996226;
+}
+
+.delete-btn{
+background:#f6ecef;
+border:1px solid #d7bcc3 !important;
+color:#741638;
+}
+
+.delete-btn:hover{
+background:#741638;
+color:#fff;
+}
+
+.customers-summary{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:25px;
+margin-top:40px;
+}
+
+.summary-card{
+background:#fff;
+border:1px solid #eadde0;
+padding:30px;
+box-shadow:0 15px 40px rgba(74,13,32,.05);
+transition:.3s;
+}
+
+.summary-card:hover{
+transform:translateY(-4px);
+}
+
+.summary-card h3{
+margin:0;
+font-family:Georgia,serif;
+font-size:34px;
+font-weight:400;
+color:#351019;
+}
+
+.summary-card span{
+display:block;
+margin-top:14px;
+font-size:12px;
+letter-spacing:2px;
+text-transform:uppercase;
+color:#8d797e;
+}
+.empty-customers,
+.customers-loading{
+padding:90px 30px;
+text-align:center;
+background:#fff;
+}
+
+.empty-icon{
+width:90px;
+height:90px;
+margin:auto;
+margin-bottom:25px;
+border:1px solid #741638;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:42px;
+font-family:Georgia,serif;
+color:#741638;
+}
+
+.empty-customers h2,
+.customers-loading h2{
+margin:0;
+font-family:Georgia,serif;
+font-size:42px;
+font-weight:400;
+color:#351019;
+}
+
+.empty-customers p,
+.customers-loading p{
+max-width:420px;
+margin:20px auto 0;
+font-size:13px;
+line-height:1.8;
+color:#8d797e;
+}
+
+.loader{
+width:52px;
+height:52px;
+margin:auto;
+margin-bottom:25px;
+border-radius:50%;
+border:4px solid #eadde0;
+border-top-color:#741638;
+animation:customerSpin 1s linear infinite;
+}
+
+@keyframes customerSpin{
+
+0%{
+transform:rotate(0deg);
+}
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+
+.customers-table tr:last-child td{
+border-bottom:none;
+}
+
+.customers-table td strong{
+font-family:Georgia,serif;
+font-weight:400;
+color:#351019;
+}
+
+.customers-table td small{
+display:block;
+margin-top:4px;
+color:#9b878c;
+font-size:11px;
+}
+
+.customers-table::-webkit-scrollbar{
+height:8px;
+}
+
+.customers-table::-webkit-scrollbar-thumb{
+background:#c9aab3;
+}
+
+.customers-table::-webkit-scrollbar-track{
+background:#f6f1ef;
+}
+.customers-table tbody tr{
+transition:all .3s ease;
+}
+
+.customers-table tbody tr:hover{
+background:#fff8f6;
+transform:scale(1.002);
+}
+
+.refresh-btn,
+.view-btn,
+.edit-btn,
+.delete-btn{
+transition:all .3s ease;
+}
+
+.refresh-btn:hover,
+.view-btn:hover,
+.edit-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 20px rgba(116,22,56,.15);
+}
+
+.customer-avatar{
+transition:all .35s ease;
+}
+
+.customer-info:hover .customer-avatar{
+background:#741638;
+color:#fff;
+transform:rotate(8deg) scale(1.05);
+}
+
+.stat-card,
+.summary-card,
+.customers-card{
+transition:all .35s ease;
+}
+
+.stat-card:hover,
+.summary-card:hover,
+.customers-card:hover{
+box-shadow:0 18px 45px rgba(74,13,32,.08);
+}
+
+.customers-toolbar input{
+transition:all .35s ease;
+}
+
+.customers-toolbar input:hover{
+border-color:#741638;
+}
+
+.orders-badge{
+transition:.3s;
+}
+
+.orders-badge:hover{
+background:#741638;
+color:#fff;
+}
+
+.customers-header h1,
+.customers-toolbar h2,
+.summary-card h3,
+.stat-card h2{
+text-rendering:optimizeLegibility;
+}
+
+.customers-header,
+.customers-card,
+.summary-card,
+.stat-card{
+border-radius:4px;
+}
+
+.customers-page{
+animation:fadeCustomer .5s ease;
+}
+
+@keyframes fadeCustomer{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+@media (max-width:1100px){
+
+.customers-page{
+padding:25px;
+}
+
+.customer-stats,
+.customers-summary{
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
+.customers-toolbar{
+padding:22px;
+}
+
+.customers-toolbar input{
+width:260px;
+}
+
+.customers-table th,
+.customers-table td{
+padding:16px;
+}
+
+.customer-avatar{
+width:46px;
+height:46px;
+font-size:20px;
+}
+
+.customer-info strong{
+font-size:16px;
+}
+
+.summary-card h3,
+.stat-card h2{
+font-size:30px;
+}
+
+}
+
+@media (max-width:900px){
+
+.customers-page{
+padding:18px;
+}
+
+.customers-header{
+flex-direction:column;
+align-items:flex-start;
+gap:20px;
+}
+
+.refresh-btn{
+width:100%;
+}
+
+.customer-stats,
+.customers-summary{
+grid-template-columns:1fr;
+}
+
+.customers-toolbar{
+flex-direction:column;
+align-items:flex-start;
+gap:18px;
+}
+
+.customers-toolbar input{
+width:100%;
+}
+
+.customers-card{
+overflow-x:auto;
+}
+
+.customers-table{
+min-width:900px;
+}
+
+.action-buttons{
+flex-wrap:wrap;
+}
+
+.action-buttons button{
+flex:1;
+min-width:90px;
+}
+
+}
+@media (max-width:600px){
+
+.customers-page{
+padding:14px;
+}
+
+.customers-header{
+margin-bottom:25px;
+padding-bottom:18px;
+}
+
+.customers-header h1{
+font-size:32px;
+line-height:1.2;
+}
+
+.customers-header span{
+font-size:12px;
+}
+
+.refresh-btn{
+padding:14px;
+font-size:11px;
+letter-spacing:2px;
+}
+
+.stat-card,
+.summary-card{
+padding:22px;
+}
+
+.stat-card h2,
+.summary-card h3{
+font-size:26px;
+}
+
+.stat-card span,
+.summary-card span{
+font-size:11px;
+}
+
+.customers-toolbar{
+padding:18px;
+}
+
+.customers-toolbar h2{
+font-size:22px;
+}
+
+.customers-toolbar input{
+padding:13px 15px;
+font-size:12px;
+}
+
+.customers-table{
+min-width:820px;
+}
+
+.customers-table th{
+font-size:10px;
+padding:14px;
+letter-spacing:2px;
+}
+
+.customers-table td{
+padding:15px;
+font-size:12px;
+}
+
+.customer-avatar{
+width:42px;
+height:42px;
+font-size:18px;
+}
+
+.customer-info{
+gap:12px;
+}
+
+.customer-info strong{
+font-size:15px;
+}
+
+.customer-info small{
+font-size:10px;
+}
+
+.action-buttons{
+gap:8px;
+}
+
+.action-buttons button{
+padding:10px 12px;
+font-size:10px;
+letter-spacing:1px;
+}
+
+.orders-badge{
+padding:6px 10px;
+font-size:11px;
+}
+
+.empty-customers,
+.customers-loading{
+padding:60px 20px;
+}
+
+.empty-icon{
+width:70px;
+height:70px;
+font-size:32px;
+}
+
+.empty-customers h2,
+.customers-loading h2{
+font-size:30px;
+}
+
+.empty-customers p,
+.customers-loading p{
+font-size:12px;
+}
+
+}
+/* ---------- Luxury Scrollbar ---------- */
+
+.customers-card::-webkit-scrollbar,
+.customers-table::-webkit-scrollbar{
+height:10px;
+width:10px;
+}
+
+.customers-card::-webkit-scrollbar-track,
+.customers-table::-webkit-scrollbar-track{
+background:#f7f1ef;
+}
+
+.customers-card::-webkit-scrollbar-thumb,
+.customers-table::-webkit-scrollbar-thumb{
+background:#b07932;
+border-radius:20px;
+}
+
+.customers-card::-webkit-scrollbar-thumb:hover,
+.customers-table::-webkit-scrollbar-thumb:hover{
+background:#741638;
+}
+
+/* ---------- Text Selection ---------- */
+
+::selection{
+background:#741638;
+color:#fff;
+}
+
+/* ---------- Focus ---------- */
+
+button:focus,
+input:focus{
+outline:none;
+}
+
+/* ---------- Smooth ---------- */
+
+*{
+scroll-behavior:smooth;
+}
+
+/* ---------- Premium Card Border ---------- */
+
+.stat-card,
+.summary-card,
+.customers-card{
+position:relative;
+overflow:hidden;
+}
+
+.stat-card::before,
+.summary-card::before,
+.customers-card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:0;
+
+width:100%;
+height:3px;
+
+background:linear-gradient(
+90deg,
+#741638,
+#b07932,
+#741638
+);
+
+opacity:.9;
+
+}
+
+/* ---------- Luxury Hover ---------- */
+
+.stat-card:hover::before,
+.summary-card:hover::before,
+.customers-card:hover::before{
+
+height:4px;
+
+transition:.3s;
+
+}
+
+/* ---------- Table Hover ---------- */
+
+.customers-table tbody tr:hover td{
+
+color:#2b0b14;
+
+}
+
+/* ---------- Header Decoration ---------- */
+
+.customers-header h1::after{
+
+content:"";
+
+display:block;
+
+margin-top:12px;
+
+width:90px;
+height:2px;
+
+background:#b07932;
+
+}
+
+/* ---------- Revenue ---------- */
+
+.summary-card:first-child h3,
+.stat-card:last-child h2{
+
+color:#741638;
+
+}
+
+/* ---------- Buttons ---------- */
+
+.view-btn,
+.edit-btn,
+.delete-btn,
+.refresh-btn{
+
+font-family:Arial,Helvetica,sans-serif;
+
+}
+
+/* ---------- Print ---------- */
+
+@media print{
+
+.refresh-btn,
+.action-buttons{
+
+display:none;
+
+}
+
+.customers-page{
+
+background:#fff;
+padding:0;
+
+}
+
+.customers-card,
+.stat-card,
+.summary-card{
+
+box-shadow:none;
+border:1px solid #ccc;
+
+}
+
+}
+
+/* ---------- Finish ---------- */
+
+.customers-page{
+
+animation:fadeCustomerPage .45s ease;
+
+}
+
+@keyframes fadeCustomerPage{
+
+from{
+
+opacity:0;
+transform:translateY(18px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
