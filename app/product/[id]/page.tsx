@@ -3,6 +3,9 @@
 import "./product.css";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { createClient } from "@/lib/lib/client";
+
+
 
 type Product = {
   id: number;
@@ -34,7 +37,7 @@ const products: Product[] = [
     ],
     description:
       "A premium embroidered Anarkali suit designed for elegant celebrations and special occasions.",
-    sizes: ["S", "M", "L", "XL", "XXL"],
+    sizes: ["free Size"],
     colors: ["Wine", "Black", "Maroon"],
     rating: 4.8,
     reviews: 128,
@@ -52,7 +55,7 @@ const products: Product[] = [
     ],
     description:
       "Premium festive wear crafted for graceful celebrations.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["free Size"],
     colors: ["Pink", "Wine", "Green"],
     rating: 4.7,
     reviews: 94,
@@ -70,7 +73,7 @@ const products: Product[] = [
     ],
     description:
       "An elegant premium wedding collection suit for memorable occasions.",
-    sizes: ["M", "L", "XL", "XXL"],
+    sizes: ["free Size"],
     colors: ["Red", "Maroon", "Gold"],
     rating: 4.9,
     reviews: 215,
@@ -88,7 +91,7 @@ const products: Product[] = [
     ],
     description:
       "A stylish designer party suit made for modern celebrations.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["free Size"],
     colors: ["Black", "Blue", "Wine"],
     rating: 4.6,
     reviews: 76,
@@ -106,7 +109,7 @@ const products: Product[] = [
     ],
     description:
       "Comfortable and elegant cotton wear for everyday style.",
-    sizes: ["S", "M", "L", "XL", "XXL"],
+    sizes: ["free Size"],
     colors: ["White", "Pink", "Blue"],
     rating: 4.5,
     reviews: 89,
@@ -124,7 +127,7 @@ const products: Product[] = [
     ],
     description:
       "Luxury designer fashion with a sophisticated Paradise Collection finish.",
-    sizes: ["M", "L", "XL"],
+    sizes: ["free Size"],
     colors: ["Black", "Gold", "Wine"],
     rating: 4.8,
     reviews: 145,
@@ -142,7 +145,7 @@ const products: Product[] = [
     ],
     description:
       "Beautiful embroidered festive wear for elegant celebrations.",
-    sizes: ["S", "M", "L", "XL"],
+    sizes: ["free Size"],
     colors: ["Green", "Pink", "Maroon"],
     rating: 4.7,
     reviews: 110,
@@ -160,7 +163,7 @@ const products: Product[] = [
     ],
     description:
       "A premium wedding collection created for luxurious celebrations.",
-    sizes: ["M", "L", "XL", "XXL"],
+    sizes: ["free Size"],
     colors: ["Red", "Gold", "Maroon"],
     rating: 4.9,
     reviews: 187,
@@ -169,6 +172,26 @@ const products: Product[] = [
 
 export default function ProductPage() {
   const router = useRouter();
+  const supabase = createClient();
+  async function requireLogin(
+  redirect: string
+) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    router.push(
+      `/auth?redirect=${encodeURIComponent(
+        redirect
+      )}`
+    );
+
+    return false;
+  }
+
+  return true;
+}
   const params = useParams();
 
   const productId = Number(params.id);
@@ -207,7 +230,16 @@ export default function ProductPage() {
     }
   }, [product]);
 
-  function addToCart() {
+  
+  
+
+  async function addToCart()  {
+
+    const allowed = await requireLogin("/cart");
+
+if (!allowed) {
+  return;
+}
     if (!selectedSize) {
       setMessage("Please select your size first.");
       return;
@@ -236,7 +268,12 @@ export default function ProductPage() {
     }
   }
 
-  function buyNow() {
+  async function buyNow() {
+    const allowed = await requireLogin("/checkout");
+
+if (!allowed) {
+  return;
+}
     if (!selectedSize) {
       setMessage("Please select your size first.");
       return;
@@ -270,7 +307,13 @@ export default function ProductPage() {
     router.push("/checkout");
   }
 
-  function addToWishlist() {
+  async function addToWishlist() {
+    const allowed = await requireLogin("/wishlist");
+
+    if (!allowed) {
+      return;
+    }
+
     try {
       const currentWishlist: number[] = JSON.parse(
         localStorage.getItem("paradise-wishlist") || "[]"
@@ -550,3 +593,4 @@ export default function ProductPage() {
     </main>
   );
 }
+

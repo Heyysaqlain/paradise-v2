@@ -37,6 +37,24 @@ const fallbackImage =
 
 export default function ShopPage() {
   const router = useRouter();
+  const supabase = createClient();
+   async function requireLogin(
+  redirect: string
+) {
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    router.push(
+      `/auth?redirect=${encodeURIComponent(redirect)}`
+    );
+
+    return false;
+  }
+
+  return true;
+}
 
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -52,7 +70,9 @@ export default function ShopPage() {
   const [cartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
+   
     fetchProducts();
+ 
 
     const savedCart = localStorage.getItem("paradise-cart");
     const savedWishlist = localStorage.getItem("paradise-wishlist");
@@ -98,7 +118,15 @@ export default function ShopPage() {
     setLoading(false);
   }
 
-  function addToCart(productId: string) {
+  async function addToCart(
+  productId: string
+) {
+const allowed = await requireLogin("/cart");
+
+if (!allowed) {
+  return;
+}
+  
     const updatedCart = [...cart, productId];
 
     setCart(updatedCart);
@@ -124,7 +152,13 @@ export default function ShopPage() {
     );
   }
 
-  function toggleWishlist(productId: string) {
+  async function toggleWishlist(productId: string) {
+    const allowed = await requireLogin("/wishlist");
+
+    if (!allowed) {
+      return;
+    }
+
     let updatedWishlist: string[];
 
     if (wishlist.includes(productId)) {
@@ -718,18 +752,28 @@ export default function ShopPage() {
             </p>
 
             <button
-              onClick={() => {
-                localStorage.setItem(
-                  "paradiseCheckout",
-                  JSON.stringify({
-                    items: cartProducts,
-                    total: cartTotal,
-                  })
-                );
+                onClick={async () => {
 
-                setCartOpen(false);
-                router.push("/checkout");
-              }}
+  const allowed =
+    await requireLogin("/checkout");
+
+  if (!allowed) {
+    return;
+  }
+
+  localStorage.setItem(
+    "paradiseCheckout",
+    JSON.stringify({
+      items: cartProducts,
+      total: cartTotal,
+    })
+  );
+
+  setCartOpen(false);
+
+  router.push("/checkout");
+
+}}
             >
               Proceed To Checkout →
             </button>
